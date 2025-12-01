@@ -29,6 +29,7 @@ A Flask-based REST API service for managing student data, using Azure Cosmos DB 
 {
   "name": "John Doe",
   "branch": "Computer Science",
+  "group": "A1",
   "email": "john@example.com",
   "rollNumber": "CS001"
 }

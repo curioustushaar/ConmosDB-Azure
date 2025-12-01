@@ -3,12 +3,17 @@ from flask_cors import CORS
 from connect import connect_cosmos
 from azure.cosmos import exceptions
 import uuid
+import sys
 
 app = Flask(__name__)
 CORS(app)
 
 # Initialize Cosmos DB connection
-container = connect_cosmos()
+try:
+    container = connect_cosmos()
+except Exception as e:
+    print(f"❌ Failed to connect to Cosmos DB on startup: {e}")
+    sys.exit(1)
 
 
 @app.route('/', methods=['GET'])
@@ -96,7 +101,7 @@ def create_student():
                 'error': 'No data provided'
             }), 400
         
-        required_fields = ['name', 'branch']
+        required_fields = ['name', 'branch', 'group']
         for field in required_fields:
             if field not in data:
                 return jsonify({

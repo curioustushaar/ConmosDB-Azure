@@ -35,8 +35,10 @@ def connect_cosmos():
 
     except exceptions.CosmosHttpResponseError as e:
         print("❌ Error connecting to Cosmos DB:", e)
+        raise
     except ValueError as e:
         print("❌ Configuration Error:", e)
+        raise
 
 
 if __name__ == "__main__":
